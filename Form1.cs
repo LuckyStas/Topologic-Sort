@@ -420,7 +420,6 @@ namespace Testt
         {
             label1.Hide();
             await Task.Run(() => findMaxVisualisation());
-            //Task task = new Task(findMaxVisualisation);
             lastlabel.Show();
         }
     }
