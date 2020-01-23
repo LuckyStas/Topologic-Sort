@@ -63,19 +63,9 @@ namespace Testt
             }
         }
 
-        private void go_button_Click(object sender, EventArgs e)
+        private void topologicSortVisual()
         {
-            int[][] adjacencyList = new int[][]
-            {
-               new int[] {3},
-               new int[] {},
-               new int[] {1},
-               new int[] {1,2},
-           };
-
-
             const int k = 8;
-
             Pen boards = new Pen(Color.Black, 8);
 
             System.Drawing.Graphics graphics = this.CreateGraphics();
@@ -219,6 +209,21 @@ namespace Testt
 
             buildCircles(i, x, y, "1", Color.Black, rectangle, graphics);
 
+        }
+
+        private async void go_button_Click(object sender, EventArgs e)
+        {
+            int[][] adjacencyList = new int[][]
+            {
+               new int[] {3},
+               new int[] {},
+               new int[] {1},
+               new int[] {1,2},
+           };
+
+            label1.Show();
+
+            await Task.Run(()=>topologicSortVisual());
 
             const int n = 4;
             bool[] used = new bool[n] { false, false, false, false };
@@ -245,7 +250,6 @@ namespace Testt
         {
             label3.Visible = false;
             label4.Hide();
-            label1.Show();
             const int n = 5;
             System.Drawing.Graphics graphics = this.CreateGraphics();
             System.Drawing.Rectangle[] rectangle = new Rectangle[n];
@@ -325,11 +329,8 @@ namespace Testt
         }
 
 
-
-
-        private void button2_Click(object sender, EventArgs e)
+        private void findMaxVisualisation()
         {
-            label1.Hide();
             System.Drawing.Graphics graphics = this.CreateGraphics();
 
             ///////////////////////////1 вершина
@@ -413,7 +414,13 @@ namespace Testt
                     Thread.Sleep(1000);
                 }
             }
+        }
 
+        private async void button2_Click(object sender, EventArgs e)
+        {
+            label1.Hide();
+            await Task.Run(() => findMaxVisualisation());
+            //Task task = new Task(findMaxVisualisation);
             lastlabel.Show();
         }
     }
